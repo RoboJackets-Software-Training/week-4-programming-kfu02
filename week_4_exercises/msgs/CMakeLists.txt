@@ -1,9 +1,9 @@
 add_message_files(
-        FILES
-        # <===== HERE =======
+    FILES
+    CosAndSin.msg # <===== HERE =======
 )
 
 generate_messages(
-        DEPENDENCIES
-        std_msgs
+    DEPENDENCIES
+    std_msgs
 )

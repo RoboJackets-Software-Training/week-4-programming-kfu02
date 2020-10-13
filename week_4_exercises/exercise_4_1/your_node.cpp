@@ -5,7 +5,7 @@
 // -========================================================-
 
 // -= (EXERCISE 1) your callback function should be defined here! =-
-void callback_function(str_msgs::String string_msg) {
+void callback_function(std_msgs::String string_msg){
     ROS_INFO_STREAM(string_msg.data);
 }
 // -===============================================================-

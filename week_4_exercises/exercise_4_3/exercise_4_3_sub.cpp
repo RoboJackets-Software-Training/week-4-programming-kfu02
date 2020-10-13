@@ -2,6 +2,7 @@
 #include <iostream>
 #include <ros/ros.h>
 #include <std_msgs/Float64.h>
+#include <week_4_exercises/CosAndSin.h>
 
 double cosine = 0;
 double sine = 0;
@@ -15,16 +16,21 @@ void sineCallback(std_msgs::Float64 sin_msg) {
   sine = sin_msg.data;
 }
 
+void cosAndSinCallback(week_4_exercises::CosAndSin msg) {
+    cosine = msg.cos;
+    sine = msg.sin;
+}
+
 int main(int argc, char** argv) {
   ros::init(argc, argv, "custom_message_node_sub");
   ros::NodeHandle nh;
 
-  ros::Subscriber cos_sub = nh.subscribe("cosine", 1, cosineCallback);
-  ros::Subscriber sin_sub = nh.subscribe("sine", 1, sineCallback);
+  // ros::Subscriber cos_sub = nh.subscribe("cosine", 1, cosineCallback);
+  // ros::Subscriber sin_sub = nh.subscribe("sine", 1, sineCallback);
 
   sum_pub = nh.advertise<std_msgs::Float64>("output", 1);
 
-  ros::Subscriber custom_sub = nh.subscribe("cosine_sine", 1, customCallback);
+  ros::Subscriber custom_sub = nh.subscribe("cosine_sine", 1, &cosAndSinCallback);
 
   ros::spin();
   ros::Rate rate(20);
